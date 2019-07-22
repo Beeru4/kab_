@@ -45,4 +45,4 @@
 - properties 项目配置文件
 
 #### 流程图
-![net](./pic/work.jpg) 
+![net](/pic/work.jpg) 
