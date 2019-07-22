@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>KAB大学生创业教育网</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="创业信息资讯 网上开班 大学生创业 KAB大学生">
+    <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet">
+    <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+    <script type="text/javascript">
+        $(function () {//导航
+            var navdata = "" || "首页";
+            $(".topMain").find("li").each(function () {
+                if (navdata == $(this).text()) {
+                    $(".topMain").find("li a").removeClass("on");
+                    $(this).find('a').addClass("on");
+
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="header">
+    <div id="topInfo">
+        <span class="white">欢迎来到KAB创业教育网</span>
+        <div class="memberBox fr">
+            <ul th:if="${null == member}">
+                <li><a href="http://127.0.0.1:7070/member/login">[登录]</a></li>
+                <li><a href="http://127.0.0.1:7070/member/r7070egister">[免费注册]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+            <ul th:if="${null != member}">
+                <li class="fgreen">
+                    您好,<span>&nbsp;<b th:text="${member.name == null ?'':member.name}"></b>&nbsp;老师</span>
+                </li>
+                <li><a href="/member/loginout">[注销]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="navs">
+        <div class="navmains">
+            <div class="logo fl"><a href="http://127.0.0.1:7070/public/index"><img
+                    src="http://127.0.0.1:7500/image/logo.gif" alt="logo"></a></div>
+            <div class="topMain">
+                <ul>
+                    <li><a href="http://127.0.0.1:7070/public/index" class="on" style="background-color: #5BAF2F">首页</a></li>
+                    <li><a href="http://127.0.0.1:7070/survey/viewSurvey">KAB概况</a></li>
+                    <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+                    <li><a href="http://127.0.0.1:7070/consultation/consultation">创业资讯</a></li>
+                    <li><a href="http://127.0.0.1:7070/news/news">新闻展示</a></li>
+                    <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear h20"></div>
+
+    <div id="main">
+        <div class="banner">
+            <h3>关于我们</h3>
+            <img src="http://127.0.0.1:7500/image/banner.gif" width="1000px" height="200px" alt="banner">
+        </div>
+        <div class="locaiton green"><a href="http://kab.project.bdqn.cn/">首页</a>&gt;&gt;单页管理&gt;&gt;关于我们</div>
+        <div class="h20"></div>
+        <div class="leftMenu fl">
+            <div class="menuTop"> 单页管理</div>
+            <ul>
+                <li><a href="http://127.0.0.1:7000/about" class="on" style="background-color: #3d474a">关于我们</a></li>
+                <li><a href="http://127.0.0.1:7000/copy">版权声明</a></li>
+                <li><a href="http://127.0.0.1:7000/recruit">人才招聘</a></li>
+                <li><a href="http://127.0.0.1:7000/contact">联系我们</a></li>
+            </ul>
+        </div>
+        <div class="rightContent fl">
+            <p style="text-align:center;margin-top:10px;margin-bottom:10px;padding:0px;font-size:14px;color:#333333;line-height:24px;font-family:����;white-space:normal;">
+                <img src="http://127.0.0.1:7500/image/20140425065545_96682.jpg" width="351" height="406" alt="">
+            </p>
+            <p style="margin-top:10px;margin-bottom:10px;padding:0px;font-size:14px;color:#333333;line-height:24px;font-family:����;white-space:normal;">
+                为适应创新创造的时代要求，满足青年就业的现实需要，培养青年的创业意识和创业能力，共青团中央、全国青联与国际劳工组织合作，自2005年8月起在中国大学中开展KAB创业教育（中国）项目（简称“KAB项目”）。这是共青团中央、全国青联通过国际合作推进中国创业教育发展的一项尝试，旨在吸收借鉴国际经验的基础上，探索出一条具有中国特色的创业教育之路。
+            </p>
+            <p style="margin-top:10px;margin-bottom:10px;padding:0px;font-size:14px;color:#333333;line-height:24px;font-family:����;white-space:normal;">
+                KAB创业教育项目目前已在全球30多个国家开展。其核心内容是国际劳工组织为培养大中学生的创业意识和创业能力而专门开发的课程体系，与已经在各国广泛实施的“创办和改善你的企业”项目（SIYB项目）共同构成一个完整的创业培训体系。该课程一般以选修课的形式在大学开展，学生通过选修该课程可以获得相应的学分。围绕该课程，学生还可以参加KAB创业俱乐部、创业大讲堂等课外实践活动。通过教授和操练有关企业和创业的基本知识和技能，该项目帮助学生对创业树立全面认识和体验，切实提高其创业意识和创业能力，培养有创业和创新精神的青年人才。
+            </p>
+            <p style="margin-top:10px;margin-bottom:10px;padding:0px;font-size:14px;color:#333333;line-height:24px;font-family:����;white-space:normal;">
+                截至2011年2月，KAB创业教育（中国）项目已培训来自850所高校的2931名师资，在100所高校创设大学生KAB创业俱乐部，20万多名大学生参加了学习实践。在清华大学、中国青年政治学院、浙江大学等600多所高校开设了《大学生KAB创业基础》课程，公开出版了《大学生KAB创业基础》教师用书和学生用书两套教材，建立了课程建设、师资培训、质量控制、交流推广四大体系，受到师生广泛欢迎。根据教育的需要和学生的要求,
+                该项目将继续在全国各高校推广。
+            </p>
+            <br>
+        </div>
+    </div>
+    <div class="h20"></div>
+    <div id="footer">
+        <ul>
+            <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+        </ul>
+    </div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>提示</title>
+    <base href="http://127.0.0.1:7070/public/index"/>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Microsoft YaHei';
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #F3F3F3;
+        }
+
+        .notice {
+            position: relative;
+            width: 300px;
+            padding: 100px;
+            margin: 0 auto;
+            border: 1px dashed #69C;
+            background: white;
+        }
+
+        .msginfo {
+            margin: 0 auto;
+            width: 160px;
+        }
+
+        .timemsg {
+            postion: absolute;
+            bottom: 20px;
+            padding-top: 20px;
+        }
+
+        .timemsg a {
+            font-size: 10px;
+        }
+
+        .sucess {
+            padding-left: 40px;
+            background: #fff;
+            line-height: 40px;
+        }
+
+        .error {
+            padding-left: 40px;
+            background: #fff;
+            line-height: 40px;
+        }
+
+        .warn {
+            padding-left: 40px;
+            background: #fff;
+            line-height: 40px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+
+            var Obox = document.getElementById('box');
+            var a = (document.documentElement.clientHeight);
+            var b = Obox.offsetHeight;
+            Obox.style.top = parseInt((a - b) / 4) + "px";
+
+            var url = "http://127.0.0.1:7070/public/index";
+            var otimer = document.getElementById("timer");
+            var n = 5;
+            var timer = setInterval(function () {
+                n--;
+                otimer.innerHTML = n;
+                if (n <= 1) {
+                    clearInterval(timer);
+                    if (url != "")
+                        location.href = url;
+                    else
+                        window.history.back();
+                    return;
+                }
+
+            }, 1000);
+        }
+
+    </script>
+</head>
+<body>
+<div class="notice" id="box">
+    <div class="msginfo warn">抱歉,似乎页面丢失了</div>
+    <div class='timemsg'>
+        <a href="http://127.0.0.1:7070/public/index">
+            <span id="timer">5</span> 秒后，如果您的浏览器没有自动跳转，请点击这里
+        </a>
+    </div>
+    <div>
+</body>
+</html>

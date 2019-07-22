@@ -1,0 +1,52 @@
+server:
+  port: 9999 #端口
+  servlet:
+    context-path: /kab_backg #服务器名
+spring:
+  application:
+    name: kab_backg #应用程序名
+  mvc:
+    view:
+      prefix: classpath:/templates/ #前缀
+      suffix: .html #后缀
+  datasource:
+    url: jdbc:mysql://localhost:3306/kab_database?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC #数据库url
+    username: kab_admin #数据库用户名
+    password: 123456 #数据库密码
+    driver-class-name: com.mysql.jdbc.Driver #数据库驱动
+    type: com.alibaba.druid.pool.DruidDataSource #数据源
+    druid:
+      # 下面为连接池的补充设置，应用到上面所有数据源中
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall
+      use-global-data-source-stat: true
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+mybatis:
+  type-aliases-package: com.beerus.pojo #别名
+  mapper-locations: classpath:xml/*Mapper.xml #SQL映射文件
+redis: # redis
+  host: localhost
+  port: 6379
+  timeout: 3000
+  maxactive: 10
+  maxwait: 3000
+  maxidle: 10
+#  password: 123456

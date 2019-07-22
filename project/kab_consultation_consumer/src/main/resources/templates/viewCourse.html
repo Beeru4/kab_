@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head>
+  <title>KAB大学生创业教育网</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="创业信息资讯 网上开班 大学生创业 KAB大学生">
+
+  <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet">
+  <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet">
+  <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+  <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+  <script type="text/javascript">
+    $(function (){//导航
+      var navdata = "创业资讯" || "首页";
+      $(".topMain").find("li").each(function(){
+        if( navdata  ==  $(this).text()){
+          $(".topMain").find("li a").removeClass("on");
+          $(this).find('a').addClass("on");
+
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+<div id="header">
+  <div id="topInfo">
+    <span class="white">欢迎来到KAB创业教育网</span>
+    <div class="memberBox fr">
+      <ul>
+        <li><a href="http://127.0.0.1:7070/member/login">[登录]</a></li>
+        <li><a href="http://127.0.0.1:7070/member/register">[免费注册]</a></li>
+        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+
+  <div class="navs">
+    <div class="navmains">
+      <div class="logo fl"><a href="http://127.0.0.1:7070/public/index"><img src="http://127.0.0.1:7500/image/logo.gif" alt="logo"></a></div>
+      <div class="topMain">
+        <ul>
+          <li><a href="http://127.0.0.1:7070/public/index" >首页</a></li>
+          <li><a href="http://127.0.0.1:7070/survey/viewSurvey">KAB概况</a></li>
+          <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+          <li><a href="http://127.0.0.1:7070/consultation/consultation" class="on" style="background-color: #5BAF2F">创业资讯</a></li>
+          <li><a href="http://127.0.0.1:7070/news/news">新闻展示</a></li>
+          <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="clear h20"></div>
+
+  <div id="main">
+    <div class="banner">
+      <h3>创业资讯</h3>
+      <img src="http://127.0.0.1:7500/image/banner.gif" width="1000px" height="200px" alt="banner">
+    </div>
+    <div class="locaiton green"><a href="http://127.0.0.1:7070/public/index">首页</a>&gt;&gt;创业资讯</div>
+    <!--公告-->
+    <div class="newsList listOnes">
+      <ul>
+
+        <li th:each="course:${pager.datas}">
+          <span>·</span>
+          <a  th:href="@{'/consultation/viewConsuByNine/'+${course.id}}"  th:title="${course.title}" th:text="${course.title}"></a>
+          <span class="fr" th:text="${#strings.substring(course.releaseDate,0,#strings.indexOf(course.releaseDate,'T'))}">2017-03-10</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div style="width: 100%" class="pager">
+    <div style="width:200px;margin: 0 auto">
+       <span th:if="${pager.currPageNo - 1 > 0}">
+            <a th:href="@{'/consultation/consultation?currPageNo=1'}">首页</a>
+            <a th:href="@{'/consultation/consultation?currPageNo='+${pager.currPageNo - 1}}">上一页</a>
+       </span>
+
+      <span th:if="${pager.currPageNo + 1 <= pager.totalPage}">
+            <a th:href="@{'/consultation/consultation?currPageNo='+${pager.currPageNo + 1}}">下一页</a>
+            <a th:href="@{'/consultation/consultation?currPageNo='+${pager.totalPage}}">尾页</a>
+       </span>
+      第<span th:text="${pager.currPageNo}"></span>页/
+      共<span th:text="${pager.totalPage}"></span>页
+    </div>
+  </div>
+  <div id="footer">
+    <ul>
+      <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+    </ul>
+  </div>
+
+
+</div></body></html>

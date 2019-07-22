@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KAB大学生创业教育网</title>
+    <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet"/>
+    <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet"/>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+    <style>
+
+        .input-btn {
+
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            width: 101px;
+            background: #6ca62b;
+            cursor: pointer;
+            border: none;
+        }
+
+        .input-btn-cancle {
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            width: 101px;
+            background: #ccc;
+            cursor: pointer;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div id="header">
+    <div id="topInfo">
+        <span class="white">欢迎来到KAB创业教育网</span>
+        <div class="memberBox fr">
+            <ul>
+                <li><a href="http://127.0.0.1:7070/member/login">[登录]</a></li>
+                <li><a href="http://127.0.0.1:7070/member/register">[免费注册]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div class="navs">
+    <div class="navmains">
+        <div class="logo fl"><a href="javascript:void(0)"><img
+                src="http://127.0.0.1:7500/image/logo.gif" alt="logo"></a></div>
+        <div class="topMain">
+            <ul>
+                <ul>
+                    <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+                    <li><a href="http://127.0.0.1:7070/survey/viewSurvey">KAB概况</a></li>
+                    <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+                    <li><a href="http://127.0.0.1:7070/consultation/consultation">创业资讯</a></li>
+                    <li><a href="http://127.0.0.1:7070/news/news">新闻展示</a></li>
+                    <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+                    <li><a href="http://127.0.0.1:7070/curriculum/curriculum" class="on"
+                           style="background-color: #5BAF2F">个人中心</a></li>
+                </ul>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="clear h20"></div>
+
+
+<div id="main">
+    <div class="m-leftmenv fl">
+        <div class="baseinfo">
+
+        </div>
+        <!-- <div class="menuTop" style="background-color: #5BAF2F ">个人资料</div>
+         <ul>
+             <li>·&nbsp;<a href="/member/personal">修改个人资料</a></li>
+             <li>·&nbsp;<a href="javascript:void(0)" style="color: #5baf32">修改密码</a></li>
+             <li>·&nbsp;<a href="/member/modifytele">修改手机号码</a></li>
+         </ul>-->
+    </div>
+    <div class="member-content fl">
+        <div class="rightTop"><span class="icon-edit"></span>设置账号密码</div>
+        <div class="clear h20"></div>
+        <div class="formbox">
+            <form method="post" action="/member/modifyRegister" id="myform" name="myfrom">
+                <div class="item">
+                    <label>用户名：</label>
+                    <input type="text" id="userName" name="userName" class="input-text"
+                           placeholder="请输入用户名" maxlength="16"/>
+                    <span class="userTip"></span>
+                </div>
+                <div class="item">
+                    <label>新密码：</label><input type="password" id="newpassword" name="newpwd" class="input-text"
+                                              placeholder="请输入新密码" maxlength="16"/>
+                    <span class="npwdTip"></span>
+                </div>
+                <div class="item">
+                    <label>确认新密码：</label><input type="password" id="renewpassword" name="password" class="input-text"
+                                                placeholder="确认密码" maxlength="16"/>
+                    <span class="pwdTip"></span>
+                </div>
+                <div class="clear h20"></div>
+                <div class="item">
+                    <input type="submit" class="input-btn" value="保  存">
+                    <input type="reset" class="input-btn-cancle" value="取  消">
+                </div>
+                <div id="msg" th:text="${error}" style="color: red;"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <ul>
+        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+    </ul>
+</div>
+
+</body>
+<script>
+
+    $(function () {
+        var flag = false;
+        $("#userName").blur(function () {
+            if ($(this).val().trim() != '') {
+                // 使用ajax验证敏感词
+                $.ajax({
+                    url: '/public/sensor',
+                    data: {name: $(this).val().trim()},
+                    dataType: "JSON",
+                    async: false,
+                    success: function (data) {
+                        if (null != data && data.code == -1) {
+                            flag = true;
+                            $(".userTip").text("用户名包含铭感词").css("color", "red");
+                        } else {
+                            $(".userTip").text("").css("color", "");
+                            flag = false;
+                        }
+                    }
+                });
+                if (!flag) {
+                    // 验证用户名是否一直
+                    $.ajax({
+                        url: "/member/checkUserName",
+                        data: {userName: $(this).val().trim()},
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            console.log(data);
+                            if (data.data == true) {
+                                $(".userTip").text("用户名已存在").css("color", "red");
+                            } else {
+                                $(".userTip").text("").css("color", "");
+                            }
+                        }
+                    });
+                }
+            }
+        });
+        $("form").submit(function () {
+            if ($("#userName").val().trim() == '') {
+                $(".userTip").text("请输入用户名").css("color", "red");
+                return false;
+            } else {
+                $(".userTip").text("").css("color", "");
+            }
+            if ($("#newpassword").val().trim() == '') {
+                $(".npwdTip").text("请输入新密码").css("color", "red");
+                return false;
+            } else if ($("#newpassword").val().trim().length < 6) {
+                $(".npwdTip").text("密码必须大于6位").css("color", "red");
+                return false;
+            } else {
+                $(".npwdTip").text("").css("color", "");
+            }
+            if ($("#newpassword").val().trim() != $("#renewpassword").val().trim()) {
+                $(".pwdTip").text("两次密码输入的不一致").css("color", "red");
+                return false;
+            } else {
+                $(".pwdTip").text("").css("color", "");
+            }
+            return !flag && true;
+        });
+
+
+    })
+</script>
+</html>

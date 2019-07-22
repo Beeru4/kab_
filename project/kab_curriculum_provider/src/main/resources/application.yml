@@ -1,0 +1,17 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: kab-curriculum-provider
+  mvc:
+    view:
+      suffix: .html
+      prefix: classpath:templates/
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.beerus.common.pojo
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8888/eureka/

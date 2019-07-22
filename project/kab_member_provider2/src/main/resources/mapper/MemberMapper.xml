@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beerus.mapper.MemberMapper">
+
+    <sql id="user">
+        SELECT  id, userName, password, major, name, phone, user_type_id as userTypeId, audit_status, class_id as classId, post, school, as_subject as asSubject, education, birthday, email, id_car as idCar, address, gender,is_lock isLock FROM `member_user_tab`
+    </sql>
+    <select id="getMemberByUserName" resultType="MemberUser">
+        <include refid="user"></include>
+         WHERE `userName` = #{userName} or phone = #{userName} AND `password` = #{pwd}
+    </select>
+
+    <select id="getMemberByEmail" resultType="MemberUser">
+        <include refid="user"></include>
+        WHERE `email` = #{email} AND `password` = #{pwd}
+    </select>
+
+    <insert id="saveMember">
+        INSERT INTO `member_user_tab`(`id`,`userName`,`phone`,`is_lock`)
+        VALUES(DEFAULT,#{userName},#{phone},1);
+    </insert>
+    <select id="getMemberByName" resultType="Integer">
+        SELECT  COUNT(1) FROM `member_user_tab` WHERE `userName` = #{userName}
+    </select>
+
+    <update id="modifyMember">
+        UPDATE `member_user_tab`
+        SET
+            `name` = #{name},
+            `birthday` = #{birthday},
+            `gender` = #{gender},
+            `education` = #{education},
+            `as_subject` = #{asSubject},
+            `id_car` = #{idCar},
+            `class_id` = #{classId},
+            `email` = #{email},
+            `address` = #{address}
+        WHERE `id` = #{id}
+    </update>
+    <update id="modifyUpdate">
+       UPDATE `member_user_tab` SET `password` = #{pwd} WHERE `phone` = #{telePhone}
+    </update>
+    <select id="count_RowsByPhone" resultType="Integer">
+        SELECT  COUNT(1) FROM `member_user_tab` WHERE `phone` = #{telePhone}
+    </select>
+    <update id="updatePhone">
+        UPDATE  `member_user_tab`
+        SET `phone` = #{telePhone}
+        WHERE `id` = #{id}
+    </update>
+    <select id="getMemberByPhone" resultType="MemberUser">
+        select * from `member_user_tab`  where phone = #{phone}
+    </select>
+    <update id="modifyUserInfo">
+        update member_user_tab
+        set `userName` = #{userName},
+            `password` = #{password},
+            `name` = #{userName}
+        WHERE id = #{id}
+    </update>
+</mapper>

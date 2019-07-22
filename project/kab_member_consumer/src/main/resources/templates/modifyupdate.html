@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KAB大学生创业教育网</title>
+    <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet"/>
+    <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet"/>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+    <style>
+
+        .input-btn {
+
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            width: 101px;
+            background: #6ca62b;
+            cursor: pointer;
+            border: none;
+        }
+
+        .input-btn-cancle {
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            width: 101px;
+            background: #ccc;
+            cursor: pointer;
+            border: none;
+        }
+
+        /*不可以发送验证码*/
+        .btnError {
+            border-radius: 20px;
+            background: #ccc;
+            padding: 5px;
+            position: absolute;
+            right: -77px;
+            top: 4px;
+            color: white;
+            text-decoration: none;
+            cursor: default;
+        }
+
+        /*可以发送验证码*/
+        .btnOk {
+            border-radius: 20px;
+            background: #6ca62b;
+            padding: 5px;
+            position: absolute;
+            right: -77px;
+            top: 4px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btnOk:hover, .btnError:hover {
+            text-decoration: none;
+        }
+
+        input, select, textarea {
+            border: 1px solid #dddee1 !important;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="header">
+    <div id="topInfo">
+        <span class="white">欢迎来到KAB创业教育网</span>
+        <div class="memberBox fr">
+            <ul>
+                <li class="fgreen">
+                    您好,<span>&nbsp;<b th:text="${session.member.name}"></b>&nbsp;老师</span>
+                </li>
+                <li><a href="/member/loginout">[注销]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div class="navs">
+    <div class="navmains">
+        <div class="logo fl"><a href="javascript:void(0)"><img
+                src="http://127.0.0.1:7500/image/logo.gif" alt="logo"></a></div>
+        <div class="topMain">
+            <ul>
+                <ul>
+                    <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+                    <li><a href="http://127.0.0.1:7070/survey/viewSurvey">KAB概况</a></li>
+                    <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+                    <li><a href="http://127.0.0.1:7070/consultation/consultation">创业资讯</a></li>
+                    <li><a href="http://127.0.0.1:7070/news/news">新闻展示</a></li>
+                    <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+                    <li><a href="http://127.0.0.1:7070/curriculum/curriculum" class="on"
+                           style="background-color: #5BAF2F">个人中心</a></li>
+                </ul>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="clear h20"></div>
+
+
+<div id="main">
+    <div class="m-leftmenv fl">
+        <div class="baseinfo">
+            <h3 th:text="${session.member.name}"></h3>
+        </div>
+        <div class="menuTop" style="background-color: #5BAF2F ">个人资料</div>
+        <ul>
+            <li>·&nbsp;<a href="/member/personal">修改个人资料</a></li>
+            <li>·&nbsp;<a href="javascript:void(0)" style="color: #5baf32">修改密码</a></li>
+            <li>·&nbsp;<a href="/member/modifytele">修改手机号码</a></li>
+        </ul>
+    </div>
+    <div class="member-content fl">
+        <div class="rightTop"><span class="icon-edit"></span>修改密码</div>
+        <div class="clear h20"></div>
+        <div class="formbox">
+            <form method="post" action="/member/updatePwd" id="myform" name="myfrom">
+                <div class="top" th:text="${success}" style="color: #6ca62b;"></div>
+
+                <div class="item">
+                    <label>新密码：</label><input type="password" id="newpassword" name="newpwd" class="input-text"
+                                              placeholder="请输入新密码" th:value="${pwd}" maxlength="16"/>
+                    <span class="npwdTip"></span>
+                </div>
+
+                <div class="item">
+                    <label>确认新密码：</label><input type="password" id="renewpassword" name="pwd" class="input-text"
+                                                placeholder="确认密码" th:value="${pwd}"maxlength="16"/>
+                    <span class="pwdTip"></span>
+                    <input type="hidden" th:value="${session.member.password}" id="hiddenPWd">
+                </div>
+                <div class="item">
+                    <label>手机号码：</label><input type="text" id="telePhone" name="telePhone" class="input-text"
+                                               placeholder="请输入手机号" th:value="${telePhone}"/>
+                    <span class="phoneTip"></span>
+                </div>
+                <div class="item">
+                    <label>验证码：</label>
+                    <div style="display: inline-block;position: relative;">
+                        <input type="text" class="input-text" name="code" id="code"maxlength="6" placeholder="请输入短信验证码">
+                        <button class="btnError" id="sendCode">发送验证码</button>
+                    </div>
+                    <span class="codeTip" style="margin-left: 80px;"></span>
+                </div>
+                <div class="clear h20"></div>
+                <div class="item">
+                    <input type="submit" class="input-btn" value="保  存">
+                    <input type="reset" class="input-btn-cancle" value="取  消">
+                </div>
+                <div id="msg" th:text="${error}" style="color: red;"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <ul>
+        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+    </ul>
+</div>
+
+</body>
+<script>
+    var interval;
+    var isSubmit = false;
+    $(function () {
+        // obj
+        var npwd = $("[name='newpwd']");
+        var pwd = $("[name='pwd']");
+        var phone = $("[name='telePhone']");
+        var code = $("[name='code']");
+
+        // reg
+        var phoneReg = /^1[3456789]\d{9}$/;
+        var pwdReg = /^(\w){6,20}$/;
+
+        // tip
+        var npwdTip = $(".npwdTip");
+        var pwdTip = $(".pwdTip");
+        var phoneTip = $(".phoneTip");
+        var codeTip = $(".codeTip");
+
+
+        // 发送验证码
+        $("#sendCode").click(function () {
+            if ($(this).attr('class').indexOf('btnOk') != -1) {
+                $.post('/member/sendCode', {telePhone: phone.val().trim(),mark:3}, function (data) {
+                    console.log(data);
+                });
+                var time = 60;
+                $("#sendCode").removeClass('btnOk');
+                $("#sendCode").addClass('btnError');
+                interval = setInterval(function () {
+                    time--;
+                    $("#sendCode").text('重新发送(' + time + ')');
+                    if (time <= 0) {
+                        clearInterval(interval);
+                        $("#sendCode").removeClass('btnError');
+                        $("#sendCode").addClass('btnOk');
+                        $("#sendCode").text('重新发送');
+                    }
+                }, 1000);
+            }
+        });
+
+        // 验证手机号码
+        phone.blur(checkPhone);
+
+        function checkPhone() {
+            if (phone.val().trim().length == 0) {
+                phoneTip.text("·手机号码不能为空").css('color', 'red');
+                isSubmit = false;
+                $("#sendCode").removeClass('btnOk');
+                $("#sendCode").addClass('btnError');
+            } else if (!phoneReg.test(phone.val().trim())) {
+                phoneTip.text("·请输入正确的手机号码").css('color', 'red');
+                isSubmit = false;
+                $("#sendCode").removeClass('btnOk');
+                $("#sendCode").addClass('btnError');
+            } else {
+                //验证码手机号码唯一
+                $.getJSON('/member/checkPhone/', {telePhone: phone.val().trim()}, function (data) {
+                    if (data.data == false) {
+                        isSubmit = true;
+                        phoneTip.text("·该手机号码不存在").css('color', 'red');
+                        $("#sendCode").removeClass('btnOk');
+                        $("#sendCode").addClass('btnError');
+                    } else {
+                        phoneTip.text("").css('color', '');
+                        $("#sendCode").removeClass('btnError');
+                        $("#sendCode").addClass('btnOk');
+                        isSubmit = false;
+                    }
+                });
+            }
+        }
+
+        npwd.blur(function () {
+            if (npwd.val().trim() != '') {
+                if (!pwdReg.test(npwd.val().trim())) {
+                    npwdTip.text("密码格式不正确").css("color", "red");
+                    npwd.focus();
+                } else if ($("#hiddenPWd").val().trim() == npwd.val().trim()) {
+                    npwdTip.text("·两次密码不能一致").css('color', 'red');
+                } else {
+                    npwdTip.text("").css("color", "");
+                }
+            }
+        });
+        pwd.blur(function () {
+            if (pwd.val().trim() != '' && npwd.val().trim() != pwd.val().trim()) {
+                pwdTip.text("两次输入的密码不一致").css("color", "red");
+                npwd.focus();
+            } else {
+                pwdTip.text("").css("color", "");
+            }
+        });
+        phone.blur(function () {
+            if (phone.val().trim() != '') {
+                if (!phoneReg.test(phone.val().trim())) {
+                    phoneTip.text("手机号码格式不正确").css("color", "red");
+                    phone.focus();
+                } else {
+                    phoneTip.text("").css("color", "");
+                }
+            }
+        });
+        code.blur(function () {
+            if (code.val().trim() == '') {
+                codeTip.text("请输入验证码").css("color", "red");
+                codeTip.focus();
+            } else {
+                codeTip.text("").css("color", "");
+            }
+        })
+        //表单提交
+        $("form").submit(function () {
+            if (npwd.val().trim() == '') {
+                npwdTip.text("新密码不能为空").css("color", "red");
+                npwd.focus();
+                return false;
+            }
+            if (pwd.val().trim() == '') {
+                pwdTip.text("确认密码不能为空").css("color", "red");
+                pwd.focus();
+                return false;
+            }
+            if (pwd.val().trim() != '' && npwd.val().trim() != pwd.val().trim()) {
+                pwdTip.text("两次输入的密码不一致").css("color", "red");
+                npwd.focus();
+                return false;
+            }
+
+            if (phone.val().trim() == '') {
+                phoneTip.text("请输入手机号码").css("color", "red");
+                phone.focus();
+                return false;
+            } else if (!phoneReg.test(phone.val().trim())) {
+                phoneTip.text("手机号码格式不正确").css("color", "red");
+                phone.focus();
+                return false;
+            }
+
+            if (phone.val().trim() != '' && code.val().trim() == '') {
+                codeTip.text("请输入验证码").css("color", "red");
+                codeTip.focus();
+                return false;
+            }
+
+        });
+    })
+</script>
+</html>
+	

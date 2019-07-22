@@ -1,0 +1,119 @@
+@CHARSET "UTF-8";
+#header {height:30px;line-height:30px;background-color:#3d474a;width:100%;}
+#topInfo, .navmains,#main {width:1000px;margin:0 auto;}
+ 
+.memberBox{overflow:hidden;color:#ffffff;} 
+.memberBox a{color:#fff}
+.memberBox ul li{display:inline-block;float:left;margin:0 10px;} 
+/*navs*/
+.navs {width:100%;height:106px;background:#fff;font-family:"微软雅黑";font-size:14px;color:#5BAF32;overflow:hidden;;}
+.navs .logo{width:240px;height:106px;}
+.topMain{float:left;width:760px;height:106px;}
+.topMain ul li{display:inline-block;float:left;}
+.topMain ul li a{display:block;line-height:106px;padding:0px 28px;background:none;color:#5BAF32;}
+.topMain ul li a:hover{text-decoration:none;}
+.topMain ul li a.on{color:#fff;border-left:1px solid #ADB0AB;border-right:1px solid #ADB0AB;padding:0px 27px;}
+#main{overflow:hidden;}
+
+#main .aside{width:240px;}
+#main .section{width:740px;margin-left:20px;}
+
+#main .aside .loginBox, #topBox{height:280px;background-color:#fff;margin-bottom:20px;overflow:hidden;} 
+#main .aside .newsbox,#main .section .newsBox{height:276px;background-color:#fff;margin-bottom:20px;}
+/*LOGIN BOX INDEX PAGE*/
+#main .aside .loginBox {background:#f3f3f3;}
+#main .aside .loginBox .boxTop{font-family:"微软雅黑";line-height:50px;height:50px; background-color:#E5E5E5;margin:1px;padding-left:20px;font-size:16px;font-weight:bold;}
+#main .aside .loginBox .boxContent{background:#f3f3f3;height:225px;width:100%;}
+#main .aside .loginBox .boxContent ul li{padding:10px;}
+#main .aside .loginBox .item{margin-left:25px;padding-left:32px;margin-top:10px;height:32px;}
+#main .aside .loginBox .code{padding-left:0px;}
+#main .aside .loginBox  .username{position:relative;}
+#main .aside .loginBox  .username a{position:absolute;right:22px;top:6px;height:18px;width:19px;display:block;background:#fff;}
+#main .aside .loginBox  .username input,
+#main .aside .loginBox  .pwd input{ height:28px;line-height:32px;width:160px; }
+#main .aside .loginBox  .code input.code{width:100px;height:29px;line-height:29px;float:left;}
+#main .aside .loginBox  .code img{margin-left:10px;margin-top:2px;}
+#main .aside .loginBox .input-btn{width:192px;height:32px;line-height:32px;font-size:14px;color:#fff;text-align:center;background:#6ca62b;display:block;border:none;cursor:pointer;}
+#main .aside .loginBox .input-btn:hover{background:#7cb834;}
+.msg{height:15px;line-height:15px;padding-left:25px;}
+.listOnes ul{padding-top:10px;}
+.listOnes ul li{line-height:25px;}
+.listOnes ul li a:hover{ color:#5BAF32;}
+#footer{width:100%;text-align:center;font-weight:bolder;font-size:14px;line-height:80px;font-family:"微软雅黑";}
+
+#footer ul {overflow:hidden;width:1000px;margin:0 auto;}
+#footer ul li{display:inline-block;margin:0px 5px;}
+#footer ul li a{color:#4a4a4a;}
+
+/* 默认幻灯片 */
+.FocusPic{zoom:1;position:relative; overflow:hidden;;width:335px;height:280px;float:left;}
+.FocusPic .content{overflow:hidden;}
+.FocusPic .changeDiv a{position:absolute;top:0px;left:0px;display:none;}
+.FocusPic .title-bg,.FocusPic .title{position:absolute;left:0px;bottom:0;width:434px;height:30px;line-height:30px;overflow:hidden}
+.FocusPic .title-bg{background:#000;filter:alpha(opacity=50);opacity:0.5;}
+.FocusPic .title a{display:block;padding-left:15px;color:#fff; font-size:14px;}
+.FocusPic .change{bottom:4px;height:20px;right:3px;*right:5px;_right:4px;position:absolute;text-align:right;z-index:9999;}
+.FocusPic .change i {background:#666;color:#FFF;cursor:pointer;font-family:Arial;font-size:12px;line-height:15px;margin-right:2px;padding:2px 6px; font-style:normal; height:15px;display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline;}
+.FocusPic .change i.cur {background:#FF7700;}
+
+.listTop{height:30px;line-height:30px;background:#f2f2f2;border-bottom:1px solid #e6e6e6;}
+.listTop h3{font-size:16px;font-family:"微软雅黑";padding:0px 10px;border-bottom:1px solid #5cb700;width:70px;}
+
+#kabDesc{float:left;width:393px;margin-left:10px;overflow:hidden;;height:280px;}
+#kabDesc .listTop-whiteBg{width:360px;height:30px;line-height:22px;background:#fff;border-bottom:1px solid #5cb700;padding-left:30px;background:#fff;}
+#kabDesc  a.detalBtn{float:right;color:#e78450;font-size:14px;font-weight:bold;}
+#kabDesc  .about{height:203px;padding-top:20px;line-height:23px;overflow:hidden;width:383px;font-size:14px;text-indent:18px;}
+
+
+/*news list*/
+.banner{height:200px;widht:1000px;position:relative;}
+.banner h3{display:block;position:absolute;height:78px;line-height:78px;width:220px;background:#71b353;z-index:1;right:0px;top:82px;text-align:center;color:#fff;font-family:"微软雅黑";font-size:28px;font-weight:normal;}
+.locaiton{padding-left:30px;height:30px;line-height:30px;background-color:#ebebeb;font-size:14px;font-family:"微软雅黑";}
+.locaiton a{margin:0 5px;}
+.newsList{padding:20px 40px;}
+
+/*show*/
+.article{padding:20px 40px;line-height:25px;}
+.article .articleTop{text-align:center;border-bottom:1px solid #DADADA;padding:20px auto;}
+.article .articleTop h3{line-height:30px;}
+.article .articleTop span{margin:10px;}
+
+.comments{padding-top:40px;border-top:1px solid #dadada;}
+.comments h3{line-height:30px;font-family:"微软雅黑";font-weight:normal;}
+.comments form .textarea{display:block;float:left;height:78px;width:870px;border:1px solid #DADADA;}
+.commentLists  ul  li{line-height:25px;padding:10px;border-top:1px dashed #dadada;}
+.comments .subBtn{display:block;float:left;margin-left:10px;height:78px;width:100px;cursor:pointer;background-color:#61B136;border:none;color:#fff;font-size:14px;}
+
+/*page web*/
+.leftMenu{width:220px;overflow:hidden;zoom:1;border:1px solid #ccc;}
+.menuTop{height:35px;position:relative;z-index:1;}
+.leftMenu ul{display:block;margin:10px;overflow:hidden;zoom:1px;width:200px; }
+.leftMenu ul li a{display:block;width:200px;height:32px;line-height:32px;padding-left:10px;font-family:"微软雅黑";font-size:14px;}
+.leftMenu ul li a.on{background:#e6e6e6;color:#4e9e00;}
+
+.rightContent{width:730px;line-height:normal;padding:5px;margin-left:20px;overflow:hidden;zoom:1;}
+/* 会员中心 */
+.m-leftmenv{width:222px;float:left;background-color:#fafafa;height:600px;}
+.baseinfo{padding-left:55px;padding-top:25px;padding-bottom:25px;}
+.menuTop{height:35px;line-height:35px;font-size:14px;font-weight:bold;color:#fff;font-family:"微软雅黑"; padding-left:20px;width:200px;}
+.m-leftmenv ul{width:220px;overflow:hidden;}
+.m-leftmenv ul li{width:220px;line-height:30px;display:block;padding-left:30px;}
+
+.rightTop{line-height:30px;font-family:"微软雅黑";font-size:14px;border-bottom:1px solid #dadada;}
+.member-content{width:760px;margin-left:18px;_margin-left:15px;}
+.formbox{padding:10px;}
+.formbox	 .item{line-height:35px;margin:10px}  
+.formbox	 .item label{display:block;float:left;padding:0px 10px;width:100px;text-align:right;}
+.formbox	 .item  .input-text{height:25px;line-height:25px;}
+
+/*班级管理*/
+.classbox{width:185px;padding:10px;}
+.classbox .on{background:#c7e3a5;}
+.classbox .classname a{padding:0px 5px;}
+.classbox .classname{padding-left:50px;}
+
+.tableBox th{background:#E1E1E1;height:30px;line-height:30px;}
+.tableBox td{ height:26px;line-height:26px;padding-left:10px;}
+.titleTop{line-height:30px;font-size:14px;}
+.class-btns{line-height:40px;}
+.class-btns a:hover{text-decoration:none;}

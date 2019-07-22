@@ -1,0 +1,124 @@
+<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>KAB大学生创业教育网</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="创业信息资讯 网上开班 大学生创业 KAB大学生">
+
+  <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet">
+  <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet">
+  <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+  <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+  <script type="text/javascript">
+    $(function (){//导航
+      var navdata = "创业资讯" || "首页";
+      $(".topMain").find("li").each(function(){
+        if( navdata  ==  $(this).text()){
+          $(".topMain").find("li a").removeClass("on");
+          $(this).find('a').addClass("on");
+
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+<div id="header">
+  <div id="topInfo">
+    <span class="white">欢迎来到KAB创业教育网</span>
+    <div class="memberBox fr">
+      <ul th:if="${null == session.member}">
+        <li><a href="http://127.0.0.1:7070/member/login">[登录]</a></li>
+        <li><a href="http://127.0.0.1:7070/member/r7070egister">[免费注册]</a></li>
+        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+      </ul>
+      <ul th:if="${null != session.member}">
+        <li class="fgreen">
+          您好,<span>&nbsp;<b th:text="${session.member.name == null ?'':session.member.name}"></b>&nbsp;老师</span>
+        </li>
+        <li><a href="/member/loginout">[注销]</a></li>
+        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+
+  <div class="navs">
+    <div class="navmains">
+      <div class="logo fl"><a href="http://127.0.0.1:7070/public/index"><img src="http://127.0.0.1:7500/image/logo.gif" alt="logo"></a></div>
+      <div class="topMain">
+        <ul>
+          <li><a href="http://127.0.0.1:7070/public/index" >首页</a></li>
+          <li><a href="http://127.0.0.1:7070/survey/viewSurvey">KAB概况</a></li>
+          <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+          <li><a href="http://127.0.0.1:7070/consultation/consultation" class="on" style="background-color: #5BAF2F">创业资讯</a></li>
+          <li><a href="http://127.0.0.1:7070/news/news">新闻展示</a></li>
+          <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="clear h20"></div>
+
+  <div id="main">
+    <div class="banner">
+      <h3>创业资讯</h3>
+      <img src="http://127.0.0.1:7500/image/banner.gif" width="1000px" height="200px" alt="banner">
+    </div>
+    <div class="locaiton green"><a href="http://127.0.0.1:7070/public/index">首页</a>
+      &gt;&gt;<a href="/consultation/consultation">创业资讯</a>&gt;&gt;详细</div>
+    <!--新闻展示-->
+    <div class="article">
+      <div class="articleTop">
+        <h3 th:text="${cou.title}"></h3>
+        <span th:text="${#dates.format(cou.releaseDate,'yyyy-MM-dd')}"></span>
+        <span>访问量：<em id="hits" th:text="${cou.browse}"></em></span>
+      </div>
+      <div class="h20"></div>
+      <div class="content">
+        <div class="zhengwen BSHARE_POP" style="font-family:宋体;white-space:normal;padding-bottom:0px;padding-top:0px;padding-left:0px;margin:0px;line-height:normal;padding-right:0px;">
+
+          <p align="center" style="margin-top:10px;margin-bottom:10px;padding:0px;font-size:14px;color:#333333;line-height:24px;font-family:����;white-space:normal;">
+
+          <img src="http://127.0.0.1:7500/image/20140425062739_64456.jpg" alt="">
+          </p>
+          <p style="font-size:14px;margin-bottom:10px;font-family:����;margin-top:10px;color:#333333;padding-bottom:0px;padding-top:0px;padding-left:0px;line-height:24px;padding-right:0px;" th:text="${cou.content}">
+
+          </p>
+          <!--<p style="font-size:14px;margin-bottom:10px;font-family:����;margin-top:10px;color:#333333;padding-bottom:0px;padding-top:0px;padding-left:0px;line-height:24px;padding-right:0px;">
+            赛制改革体现了服务青年工作思路的与时俱进，体现了工作作风的精益求精，体现了更加适应年轻人创业新需求、不断扩大服务覆盖面的务实进取精神。
+          </p>
+          <p style="font-size:14px;margin-bottom:10px;font-family:����;margin-top:10px;color:#333333;padding-bottom:0px;padding-top:0px;padding-left:0px;line-height:24px;padding-right:0px;">
+            过去的单一赛事变成“3 2”模式，由原来的创业计划竞赛一项赛事升级为大学生创业计划竞赛、创业实践挑战赛、公益创业大赛三项主体赛事，并加上MBA、移动互联网创业两项专项赛。各项赛事分别有不同的功能定位，有的面向高校在校学生，以商业计划书评审、现场答辩等作为参赛项目的评价内容；有的兼顾毕业未满5年的高校毕业生，且已投入实际创业3个月以上，以经营状况、发展前景作为评价内容。此外，非营利性质的项目和计划还能参加公益创业赛。MBA专项赛的参赛对象是就读MBA专业的在校生；移动互联网创业专项赛则倡导高校在校学生通过提交基于移动互联网领域的创业项目计划书或APP应用程序等作品说明书参赛。
+          </p>
+          <p style="font-size:14px;margin-bottom:10px;font-family:����;margin-top:10px;color:#333333;padding-bottom:0px;padding-top:0px;padding-left:0px;line-height:24px;padding-right:0px;">
+            大赛还首次设立由经济学家、企业家、风投公司组成的指导委员会，并将成立大学生创业基金委员会，搭建风投公司与优秀大学生项目“供需对接”平台，推动大赛中涌现出的优秀项目孵化落地。同时，成立大学生创业联盟，邀请地方高新技术和创业园区、创业方面的专家学者、创业成功企业、大学生创业者等加入，创建促进大学生创业就业的平台。
+          </p>
+          <p style="font-size:14px;margin-bottom:10px;font-family:����;margin-top:10px;color:#333333;padding-bottom:0px;padding-top:0px;padding-left:0px;line-height:24px;padding-right:0px;">
+            从亮点中我们能感受到“挑战杯”这一共青团工作品牌内涵的跨越。实际上，这些年来“挑战杯”一直在不断地完善和成长，品牌内涵因此不断丰富，让我们为这样的丰富和跨越喝彩！期待“创青春”在更高、更大的平台上结出更多硕果！
+          </p>-->
+        </div>
+        <div style="font-size:14px;font-family:宋体;width:640px;white-space:normal;padding-bottom:20px;text-align:right;padding-top:20px;padding-left:0px;margin:0px;line-height:normal;padding-right:0px;">
+          【责任编辑：赵小阳】
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h20"></div>
+  <div id="footer">
+    <ul>
+      <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+    </ul>
+  </div>
+
+
+</div></body></html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- saved from url=(0036)http://kab.project.bdqn.cn/login.php -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>会员登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="创业信息资讯 网上开班 大学生创业 KAB大学生">
+    <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet">
+    <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+    <style type="text/css">
+        .navs {
+            background: #ffffff;
+        }
+
+        .topMain {
+            line-height: 96px;
+            font-size: 20px;
+        }
+
+        .main {
+            background-color: #fafafa;
+            height: 586px;
+            width: 100%;
+        }
+
+        .leftBG {
+            float: left;
+            height: 586px;
+            width: 578px;
+            background: url(http://127.0.0.1:7500/image/loginBg.jpg) no-repeat;
+        }
+
+        .rightBox {
+            float: left;
+            width: 413px;
+            overflow: hidden;
+        }
+
+        #loginBox {
+            height: 293px;
+            width: 300px;
+            border: 1px solid #dbdbdb;
+            margin-left: 25px;
+            margin-top: 50px;
+            padding: 35px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+
+        .item {
+            line-height: 35px;
+        }
+
+        .item label {
+            display: block;
+        }
+
+        #code {
+            width: 140px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        .input-btn {
+            width: 268px;
+            height: 32px;
+            line-height: 32px;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            background: #6ca62b;
+            display: block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .input-btn:hover {
+            background: #7cb834;
+        }
+
+        .p {
+            font-size: 12px;
+        }
+
+        .center1000 {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .h10 {
+            height: 10px;
+        }
+        /*不可以发送验证码*/
+        .btnError {
+            border-radius: 20px;
+            background: #ccc;
+            padding: 0px;
+            position: absolute;
+            right: 50px;
+            top: 38px;
+            color: white;
+            text-decoration: none;
+            cursor: default;
+            font-size: 10px;
+        }
+
+        /*可以发送验证码*/
+        .btnOk {
+            border-radius: 20px;
+            background: #6ca62b;
+            padding: 0px;
+            position: absolute;
+            right: 50px;
+            top: 38px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btnOk:hover, .btnError:hover {
+            text-decoration: none;
+        }
+    </style>
+    <script type="text/javascript">
+
+    </script>
+</head>
+
+
+<body>
+<header id="header">
+    <div id="topInfo">
+        <span class="white">欢迎来到KAB创业教育网</span>
+        <div class="memberBox fr">
+            <ul>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="navs">
+    <div class="center1000">
+        <div class="logo fl"><a href="javascript:void(0);"><img
+                src="http://127.0.0.1:7500/image/logo-white.gif" alt="logo"></a></div>
+        <div class="topMain">会员登录</div>
+    </div>
+</div>
+<div class="main">
+    <div class="center1000">
+        <div class="clear h20"></div>
+        <div class="leftBG"></div>
+        <div class="rightBox">
+            <div id="loginBox">
+                <form method="post" action="/member/memberLogin/">
+                    <div class="top"></div>
+                    <div class="item">
+                        <label>账号：</label><input type="text" id="username" name="username" class="input-text" th:value="${userName}"/>
+                    </div>
+                    <div class="item">
+                        <label>密码：</label><input type="password" id="pwd" name="pwd" class="input-text" th:value="${pwd}"/>
+                    </div>
+                    <div class="h20"></div>
+                    <div class="item">
+                        <input type="submit" name="dosubmit" value="登 录" class="input-btn">
+                    </div>
+                    <div class="h10"></div>
+                    <div class="msg" th:text="${error}" style="color: red;"></div>
+                    <div class="h10"></div>
+                    <div class="p">
+                        没有账户，马上<a href="http://127.0.0.1:7070/member/register" class="yellow">注册</a>
+                        <a href="http://127.0.0.1:7070/member/pwd" class="green fr">忘记密码</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="clear h20"></div>
+    </div>
+</div>
+<div id="footer">
+    <ul>
+        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+    </ul>
+</div>
+
+</body>
+<script>
+
+    $(function () {
+        var msg = $(".msg");
+        var userName = $('[name="username"]');
+        var password = $('[name="pwd"]');
+
+
+        $("form").submit(function () {
+
+            if (userName.val().trim() == '') {
+                msg.text("·请输入手机号码").css('color', 'red');
+                userName.focus();
+                return false;
+            }
+            if (password.val().trim() == '') {
+                msg.text("请输入验证码").css('color', 'red');
+                password.focus();
+                return false;
+            }
+
+        });
+
+
+    })
+</script>
+</html>

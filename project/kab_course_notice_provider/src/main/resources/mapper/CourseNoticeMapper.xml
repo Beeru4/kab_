@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beerus.mapper.CourseNoticeMapper">
+    <select id="listCourseNoticeByNine" resultType="CourseNotice">
+        SELECT `id`,`title`,`content`,release_date as releaseDate,browse FROM `course_notice_tab` LIMIT 0,9
+    </select>
+    <select id="getCourseNoticeById" resultType="CourseNotice">
+          SELECT `id`,`title`,`content`,release_date as releaseDate,browse FROM `course_notice_tab`WHERE id = #{id}
+    </select>
+
+    <select id="listCourseNoticeByPager" resultType="CourseNotice">
+        SELECT `id`,`title`,`content`,release_date as releaseDate,browse FROM `course_notice_tab` LIMIT #{currPageNo},#{pageSize}
+    </select>
+
+    <select id="count_rows" resultType="Integer">
+        SELECT  COUNT(1) FROM `course_notice_tab`
+    </select>
+
+</mapper>

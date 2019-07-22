@@ -1,0 +1,13 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: kab-admin-consumer
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .html
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8888/eureka/

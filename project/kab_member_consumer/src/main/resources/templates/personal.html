@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KAB大学生创业教育网</title>
+    <link rel="stylesheet" type="text/css" href="css/wui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/wui-date.js" charset="utf-8"></script>
+
+    <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet"/>
+    <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet"/>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+    <style>
+
+        .input-btn {
+
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            width: 101px;
+            background: #6ca62b;
+            cursor: pointer;
+            border: none;
+        }
+
+        .input-btn-cancle {
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            width: 101px;
+            background: #ccc;
+            cursor: pointer;
+            border: none;
+        }
+
+        input, select, textarea {
+            border: 1px solid #dddee1 !important;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="header">
+    <div id="topInfo">
+        <span class="white">欢迎来到KAB创业教育网</span>
+        <div class="memberBox fr">
+            <ul>
+                <li class="fgreen">
+                    您好,<span>&nbsp;<b
+                        th:text="${session.member.name}"></b>&nbsp;老师</span>
+                </li>
+                <li><a href="/member/loginout">[注销]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="navs">
+        <div class="navmains">
+            <div class="logo fl"><a href="javascript:void(0)"><img
+                    src="http://127.0.0.1:7500/image/logo.gif" alt="logo"></a></div>
+            <div class="topMain">
+                <ul>
+                    <ul>
+                        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+                        <li><a href="http://127.0.0.1:7070/survey/viewSurvey">KAB概况</a></li>
+                        <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+                        <li><a href="http://127.0.0.1:7070/consultation/consultation">创业资讯</a></li>
+                        <li><a href="http://127.0.0.1:7070/news/news">新闻展示</a></li>
+                        <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+                        <li><a href="http://127.0.0.1:7070/curriculum/curriculum" class="on"
+                               style="background-color: #5BAF2F">个人中心</a></li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear h20"></div>
+
+    <div id="main">
+        <div class="m-leftmenv fl">
+            <div class="baseinfo">
+                <h3 th:text="${session.member.name}"></h3>
+            </div>
+            <div class="menuTop" style="background-color: #5BAF2F ">个人资料</div>
+            <ul>
+                <li>·&nbsp;<a href="javascript:void(0)" style="color: #5baf32">修改个人资料</a></li>
+                <li>·&nbsp;<a href="/member/modifyupdate">修改密码</a></li>
+                <li>·&nbsp;<a href="/member/modifytele">修改手机号码</a></li>
+            </ul>
+        </div>
+        <div class="member-content fl">
+            <div class="rightTop"><span class="icon-edit"></span>会员基本信息</div>
+            <div class="ok" style="color: #5BAF2F;display: none;"><h4>修改成功</h4></div>
+            <div class="formbox">
+                <form method="post" action="/member/modifyMember" id="myform"
+                      name="myfrom">
+                    <input type="hidden" th:value="${session.member.id}" name="id">
+                    <div class="top" th:text="${success}" style="color: #5BAF2F"></div>
+                    <div class="item">
+                        <label>真实姓名：</label>
+                        <input type="text" id="username" name="name" class="input-text"
+                               th:value="${session.member.name}" maxlength="10">
+                        <div id="usernameTip" class="onShow">请输入姓名</div>
+                    </div>
+                    <div class="item">
+                        <label>生日：</label>
+                        <div class="wui-area" style="display: inline-block">
+                            <wui-date
+                                    format="yyyy-mm-dd"
+                                    placeholder="请选择或输入日期"
+                                    id="broth"
+                                    btns="{'ok':'确定','now':'现在'}"
+                                    ng-model="date1"
+                                    name="birthday"
+                                    width="258px"
+                            >
+                            </wui-date>
+                            <input type="hidden" id="date"
+                                   th:value="${#dates.format(session.member.birthday,'yyyy-MM-dd')}">
+                        </div>
+                        <div id="datetip" class="onShow">请选择生日</div>
+                    </div>
+                    <div class="item">
+                        <label>性别：</label>
+                        <input type="radio" name="gender" value="0"
+                               th:checked="${session.member.gender == null || session.member.gender == 0}"
+                               class="input-radio"
+                               checked="" id="nan">男
+                        <input type="radio" name="gender" value="1" th:checked="${session.member.gender == 1}"
+                               class="input-radio" id="nv">女
+                    </div>
+                    <div class="item">
+                        <label>学历：</label>
+                        <select name="education" class="input-select" id="degree">
+                            <option value="" th:selected="${session.member.education == null}">--请选择学历--</option>
+                            <option value="大一" th:selected="${session.member.education == '大一'}"> 大一</option>
+                            <option value="大二" th:selected="${session.member.education == '大二'}"> 大二</option>
+                            <option value="大三" th:selected="${session.member.education == '大三'}"> 大三</option>
+                            <option value="大四" th:selected="${session.member.education == '大四'}"> 大四</option>
+                            <option value="研一" th:selected="${session.member.education == '研一'}"> 研一</option>
+                            <option value="研二" th:selected="${session.member.education == '研二'}"> 研二</option>
+                            <option value="研三" th:selected="${session.member.education == '研三'}"> 研三</option>
+                            <option value="其他" th:selected="${session.member.education == '其他'}"> 其他</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label>身份证号：</label><input type="text" id="identify" name="idCar"
+                                                   class="input-text"
+                                                   th:value="${session.member.idCar}">
+                        <div id="identifyTip" class="onShow">请输入15或18位身份证号码</div>
+                    </div>
+                    <div class="item">
+                        <label>任教科目：</label><input type="text" id="asSubject" name="asSubject"
+                                                   class="input-text" th:value="${session.member.asSubject}" maxlength="20">
+                        <div id="subjectTip" class="onShow"></div>
+                    </div>
+                    <div class="item">
+                        <label>班级意向：</label>
+                        <select name="classId" id="selectclass" class="input-select">
+                            <option value="0" th:selected="${session.member.classId == 0}">--参加班级意向--</option>
+                            <option th:each="class:${classList}" th:value="${class.id}" th:text="${class.classTypeName}"
+                                    th:selected="${class.id == session.member.classId}"></option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label>电子邮箱：</label><input type="text" id="email" name="email" class="input-text"
+                                                   th:value="${session.member.email}">
+                        <div id="emailTip" class="onShow">请输入邮箱</div>
+                    </div>
+                    <div class="item">
+                        <label>通讯地址：</label>
+                        <textarea name="address" rows="5" cols="36" th:text="${session.member.address}" maxlength="50"></textarea>
+                        <div id="addressTip" class="onShow"></div>
+                    </div>
+                    <div class="item">
+                        <input type="submit" class="input-btn" value="保  存">
+                        <input type="reset" class="input-btn-cancle" value="取  消">
+                    </div>
+                    <div id="msg" th:text="${error}" style="color: red;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <ul>
+            <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var app = angular.module('app', ["wui.date"]);
+</script>
+<script>
+    $(function () {
+        // 设置生日
+        if ($("#date").val().trim() != '') {
+            $("[name='birthday']").val($("#date").val().trim());
+        }
+
+        // reg
+        var idCardReg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        var emailReg = /[A-z]+[A-z0-9_-]*\@[A-z0-9]+\.[A-z]+/;
+        var nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
+
+        // form obj
+        var name = $('[name="name"]');
+        var idCard = $('[name="idCar"]');
+        var birthday = $('[name="birthday"]');
+        var email = $('[name="email"]');
+        var subject = $("[name='asSubject']");
+        var address = $("[name='address']");
+
+        // tip
+        var nameTip = $('#usernameTip');
+        var idCardTip = $('#identifyTip');
+        var birthdayTip = $('#datetip');
+        var emailTip = $('#emailTip');
+        var subjectTip = $('#subjectTip');
+        var addressTip = $("#addressTip");
+
+        // val
+        var dateValue;
+
+        var isSubumit = false;
+        var flag = false;
+        // blur
+        name.blur(function () {
+            if ($(this).val().trim() == '') {
+                nameTip.text('请输入姓名').css('color', 'red');
+            } else if (!nameReg.test($(this).val().trim())) {
+                nameTip.text('请输入正确的姓名').css('color', 'red');
+            } else {
+                sensor(name, nameTip);
+                if (!flag) {
+                    isSubumit = true;
+                    nameTip.text('').css('color', '');
+                } else {
+                    isSubumit = false;
+                }
+            }
+        });
+        subject.blur(function () {
+            if ($(this).val().trim() != '') {
+                sensor(subject, subjectTip);
+                if (!flag) {
+                    isSubumit = true;
+                    subjectTip.text('').css('color', '');
+                } else {
+                    isSubumit = false;
+                }
+            }
+        });
+        address.blur(function () {
+            if ($(this).val().trim() != '') {
+                sensor(address, addressTip);
+                if (!flag) {
+                    isSubumit = true;
+                    addressTip.text('').css('color', '');
+                } else {
+                    isSubumit = false;
+                }
+            }
+        });
+
+        idCard.blur(function () {
+            if ($(this).val().trim() == '') {
+                idCardTip.text('请输入身份证号').css('color', 'red');
+                $(this).focus();
+            } else if (!idCardReg.test($(this).val().trim())) {
+                idCardTip.text('请输入正确的身份证号').css('color', 'red');
+                $(this).focus();
+            } else {
+                idCardTip.text('').css('color', '');
+                //设置性别
+            }
+        });
+        email.blur(function () {
+            if ($(this).val().trim() != '' && emailReg.test($(this).val().trim())) {
+                emailTip.text('').css('color', '');
+            }
+        });
+        birthday.blur(function () {
+            var value = $(this).val().trim();
+            if (value != '') {
+                if (parseInt(value.split('-')[0]) > parseInt(new Date().getFullYear()) || (parseInt(new Date().getFullYear() - parseInt(value.split('-')[0])) <= 1)) {
+                    birthdayTip.text('出生日期不能小于1年或者大于当前日期').css('color', 'red');
+                    birthday.focus();
+                } else {
+                    dateValue = value;
+                    birthdayTip.text('').css('color', '');
+                }
+            }
+        });
+
+        // submit
+        $("form").submit(function () {
+            if (name.val().trim() == '') {
+                nameTip.text('请输入真实姓名').css('color', 'red');
+                name.focus();
+                return false;
+            }
+            if (birthday.val().trim() == '' && dateValue == '' && dateValue == undefined) {
+                birthdayTip.text('请填写您的生日').css('color', 'red');
+                birthday.focus();
+                return false;
+            } else if (parseInt(birthday.val().trim().split('-')[0]) > parseInt(new Date().getFullYear()) || (parseInt(new Date().getFullYear() - parseInt(birthday.val().trim().split('-')[0])) <= 1)) {
+                birthdayTip.text('出生日期不能小于1年或者大于当前日期').css('color', 'red');
+                birthday.focus();
+                return false;
+            }
+            if (idCard.val().trim() == '') {
+                idCardTip.text('身份证不能为空').css('color', 'red');
+                idCard.focus();
+                return false;
+            } else if (!idCardReg.test(idCard.val().trim())) {
+                idCardTip.text('请输入正确的身份证号').css('color', 'red');
+                idCard.focus();
+                return false;
+            }
+            if (email.val().trim() == '') {
+                emailTip.text('请输入邮箱').css('color', 'red');
+                email.focus();
+                return false;
+            } else if (!emailReg.test(email.val().trim())) {
+                emailTip.text('请输入正确的邮箱').css('color', 'red');
+                email.focus();
+                return false;
+            }
+
+            return isSubumit && !flag;
+        });
+
+        // 铭感词汇检查
+        function sensor(obj, tip) {
+            var val = obj.val().trim();
+            if (val != '') {
+                // 使用ajax验证敏感词
+                $.ajax({
+                    url: '/public/sensor',
+                    data: {name: val},
+                    dataType: "JSON",
+                    async: false,
+                    success: function (data) {
+                        if (null != data && data.code == -1) {
+                            flag = true;
+                            tip.text("包含铭感词汇");
+                            tip.css("color", "red");
+                        } else {
+                            flag = false;
+                        }
+                    }
+                })
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

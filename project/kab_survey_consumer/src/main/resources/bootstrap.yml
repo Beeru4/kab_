@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:5000 #配置中心地址
+      profile: dev #版本
+      label: master #分支
+      name: kab-config #文件名

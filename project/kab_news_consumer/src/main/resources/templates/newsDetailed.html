@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>KAB大学生创业教育网</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="创业信息资讯 网上开班 大学生创业 KAB大学生">
+    <meta charset="UTF-8">
+    <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet">
+    <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+    <script type="text/javascript">
+        $(function () {//导航
+            var navdata = "新闻展示" || "首页";
+            $(".topMain").find("li").each(function () {
+                if (navdata == $(this).text()) {
+                    $(".topMain").find("li a").removeClass("on");
+                    $(this).find('a').addClass("on");
+
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="header">
+    <div id="topInfo">
+        <span class="white">欢迎来到KAB创业教育网</span>
+        <div class="memberBox fr">
+            <ul th:if="${null == member}">
+                <li><a href="http://127.0.0.1:7070/member/login">[登录]</a></li>
+                <li><a href="http://127.0.0.1:7070/member/r7070egister">[免费注册]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+            <ul th:if="${null != member}">
+                <li class="fgreen">
+                    您好,<span>&nbsp;<b th:text="${member.name == null ?'':member.name}"></b>&nbsp;老师</span>
+                </li>
+                <li style="display: none" id="mark" th:text="${member.name == null ?'':member.name}"></li>
+                <li><a href="/member/loginout">[注销]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+        </div>
+
+    </div>
+    </header>
+
+    <div class="navs">
+        <div class="navmains">
+            <div class="logo fl"><a href="http://127.0.0.1:7070/public/index"><img src="http://127.0.0.1:7500/image/logo.gif"
+                                                                            alt="logo"></a></div>
+            <div class="topMain">
+                <ul>
+                    <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+                    <li><a href="http://127.0.0.1:7070/survey/viewSurvey">KAB概况</a></li>
+                    <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+                    <li><a href="http://127.0.0.1:7070/consultation/consultation">创业资讯</a></li>
+                    <li><a href="http://127.0.0.1:7070/news/news" class="on"
+                           style="background-color: #5BAF2F">新闻展示</a></li>
+                    <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear h20"></div>
+
+    <div id="main">
+        <div class="banner">
+            <h3>新闻展示</h3>
+            <img src="http://127.0.0.1:7500/image/banner.gif" width="1000px" height="200px" alt="banner">
+        </div>
+        <div class="locaiton green"><a href="{$baseUrl}>">首页</a>&gt;&gt;<a href="news.php?id=1">新闻展示</a>&gt;&gt;详细</div>
+        <!--新闻展示-->
+        <div class="article">
+            <div class="articleTop">
+                <h3 th:text="${news.title}"></h3>
+                <span th:text="${#dates.format(news.releaseDate,'yyyy-MM-dd')}"></span>
+                <span>访问量：<em id="hits" th:text="${news.browse}"></em></span>
+            </div>
+            <div class="h20"></div>
+            <div class="content">
+                <div class="zhengwen BSHARE_POP"
+                     style="font-family:宋体;white-space:normal;padding-bottom:0px;padding-top:0px;padding-left:0px;margin:0px;line-height:normal;padding-right:0px;">
+                    <p align="center" style="margin-top:10px;margin-bottom:10px;padding:0px;font-size:14px;color:#333333;line-height:24px;font-family:����;white-space:normal;">
+
+                        <img src="http://127.0.0.1:7500/image/20140425062739_64456.jpg" alt="">
+                    </p>
+                    <p style="font-size:14px;margin-bottom:10px;font-family:����;margin-top:10px;color:#333333;padding-bottom:0px;padding-top:0px;padding-left:0px;line-height:24px;padding-right:0px;"
+                       th:text="${news.content}">
+
+                    </p>
+
+
+                </div>
+                <div style="font-size:14px;font-family:宋体;width:640px;white-space:normal;padding-bottom:20px;text-align:right;padding-top:20px;padding-left:0px;margin:0px;line-height:normal;padding-right:0px;">
+                    【责任编辑：赵小阳】
+                </div>
+            </div>
+        </div>
+        <!-- 如果为新闻栏目则有评论 -->
+        <div class="comments">
+            <h3>发布评论</h3>
+            <form action="" method="post">
+                <input type="hidden" name="newsId" th:value="${news.id}">
+                <textarea class="textarea" name="content" onfocus="if(this.value=='请输入评论内容...')this.value='';"
+                          onblur="if(this.value=='')this.value='请输入评论内容...'">请输入评论内容...</textarea>
+                <input type="button" value="发布评论" name="dosubmit" class="subBtn"/>
+                <div class="clear h20"></div>
+
+            </form>
+            <div class="clear h20"></div>
+            <div class="clear h20 msg green"></div>
+            <div class="clear h20"></div>
+            <div class="commentLists">
+                <ul class="comment">
+
+
+                </ul>
+                <div id="pages" class="fr">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h20"></div>
+    <script type="text/javascript">
+        var loadComment;
+        $(function () {
+
+            //使用ajax请求评论
+            loadComment =  function (currPageNo) {
+                var newsId = $('[name=newsId]').val();
+                $.getJSON('/comment/comment/' + newsId + '/' + currPageNo, function (data) {
+                    var stg = '';
+                    var pager = data.data;
+                    $.each(pager.datas, function (i, d) {
+                        var date = d.commentDate.split('-');
+                        var stgDate = date[0] + '-' + date[1] + '-' + date[2].substring(0, 2);
+                        stg += '<li>' + d.content + '<time class="fr">发表于：' + stgDate + '</time> </li>';
+                    });
+                    var stgHtml = '';
+                    //拼接页面
+                    if (pager.currPageNo - 1 > 0) {
+                        stgHtml += "<a href='javascript:void(0);' class='a1' onclick='loadComment(1)'>首页</a>";
+                        stgHtml += "<a href='javascript:void(0);' class='a1' onclick='loadComment("+(pager.currPageNo - 1)+")'>上一页</a>";
+                    }
+                    if (pager.currPageNo + 1 <= pager.totalPage) {
+                        stgHtml += "<a href='javascript:void(0);' class='a1' onclick='loadComment("+(pager.totalPage)+")'>末页</a>";
+                        stgHtml += "<a href='javascript:void(0);' class='a1' onclick='loadComment("+(pager.currPageNo + 1)+")'>下一页</a>";
+                    }
+                    stgHtml += " <span>第" + pager.currPageNo  + "页</span>";
+                    stgHtml += " <span>共" + pager.totalPage  + "页</span>";
+                    $(".comment").html(stg);
+                    $("#pages").html(stgHtml);
+                });
+            }
+
+            loadComment(1);
+
+            $(document).keydown(function (e) {
+                if (e.keyCode == 13) {
+                    $(".subBtn").click();
+                }
+            });
+            $(".subBtn").click(function () {
+
+                    var content = $(this).prev('textarea').val();
+                    $('.msg').css('color', 'green');
+                    if (content == "请输入评论内容..." || /^\s+$/.test(content)) {
+                        $('.msg').css('color', 'red').text("请输入评论内容");
+                        $(this).prev('textarea').val("请输入评论内容...");
+                        return false;
+                    } else {
+                        $.getJSON('/comment/addComment', $("form").serializeArray(), function (data) {
+                            if (data.code == 1000) {
+                                $('.msg').css('color', 'green').text("成功发布评论");
+                                setTimeout(function () {
+                                    $('.msg').text("");
+                                }, 2000);
+                                $("#code").val('');
+                                var html = "<li>";
+                                html += content + '<time class="fr">发表于： ' + new Date().toLocaleDateString().split('/').join('-') + '</time>';
+                                html += "</li>";
+                                $(".commentLists").find("li").eq(0).before($(html));
+                                $('.subBtn').prev('textarea').val("请输入评论内容...");
+                                return;
+                            } else if (data.code == 1001) {
+                                $('.msg').css('color', 'red').text("发布评论失败");
+                                return;
+                            } else if (data.code == 1002) {
+                            $('.msg').css('color', 'red').text("登录之后才可以发表评论");
+                            return;
+                        }  else {
+                                $('.msg').css('color', 'red').text(data.msg);
+                                return;
+                            }
+                        })
+                    }
+
+            });
+        });
+
+    </script>
+    <div id="footer">
+        <ul>
+            <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+        </ul>
+    </div>
+</body>
+</html>

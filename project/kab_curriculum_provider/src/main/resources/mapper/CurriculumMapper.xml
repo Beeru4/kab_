@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beerus.mapper.CurriculumMapper">
+    <select id="listCurriculumByNine" resultType="Curriculum">
+        SELECT `id`,`title`,`content`,`release_date` as releaseDate FROM `curriculum_tab` LIMIT 0,9
+    </select>
+    <select id="getCurriculumById" resultType="Curriculum">
+          SELECT `id`,`title`,`content`,`browse`,`release_date` as releaseDate FROM `curriculum_tab`WHERE id = #{id}
+    </select>
+
+    <select id="listCurriculumByPager" resultType="Curriculum">
+        SELECT `id`,`title`,`content` FROM `curriculum_tab` LIMIT #{currPageNo},#{pageSize}
+    </select>
+
+    <select id="count_rows" resultType="Integer">
+        SELECT  COUNT(1) FROM `curriculum_tab`
+    </select>
+
+</mapper>

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head>
+  <title>KAB大学生创业教育网</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="创业信息资讯 网上开班 大学生创业 KAB大学生">
+
+  <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet">
+  <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet">
+  <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+  <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+  <script type="text/javascript">
+    $(function (){//导航
+      var navdata = "KAB概况" || "首页";
+      $(".topMain").find("li").each(function(){
+        if( navdata  ==  $(this).text()){
+          $(".topMain").find("li a").removeClass("on");
+          $(this).find('a').addClass("on");
+
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+<div id="header">
+  <div id="topInfo">
+    <span class="white">欢迎来到KAB创业教育网</span>
+    <div class="memberBox fr">
+      <ul th:if="${null == session.member}">
+        <li><a href="http://127.0.0.1:7070/member/login">[登录]</a></li>
+        <li><a href="http://127.0.0.1:7070/member/r7070egister">[免费注册]</a></li>
+        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+      </ul>
+      <ul th:if="${null != session.member}">
+        <li class="fgreen">
+          您好,<span>&nbsp;<b th:text="${session.member.name == null ?'':session.member.name}"></b>&nbsp;老师</span>
+        </li>
+        <li><a href="/member/loginout">[注销]</a></li>
+        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+
+  <div class="navs">
+    <div class="navmains">
+      <div class="logo fl"><a href="http://127.0.0.1:7070/public/index"><img src="http://127.0.0.1:7500/image/logo.gif" alt="logo"></a></div>
+      <div class="topMain">
+        <ul>
+          <li><a href="http://127.0.0.1:7070/public/index" >首页</a></li>
+          <li><a href="http://127.0.0.1:7070/survey/viewSurvey" class="on" style="background-color: #5BAF2F">KAB概况</a></li>
+          <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+          <li><a href="http://127.0.0.1:7070/consultation/consultation">创业资讯</a></li>
+          <li><a href="http://127.0.0.1:7070/news/news">新闻展示</a></li>
+          <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="clear h20"></div>
+
+  <div id="main">
+    <div class="banner">
+      <h3>KAB概况</h3>
+      <img src="http://127.0.0.1:7500/image/banner.gif" width="1000px" height="200px" alt="banner">
+    </div>
+    <div class="locaiton green"><a href="http://127.0.0.1:7070/public/index">首页</a>&gt;&gt;KAB概况 </div>
+    <!--新闻展示-->
+    <div class="article">
+      <div class="articleTop">
+        <h3>KAB概况</h3>
+        <span>admin</span>
+        <span>2016年08月26日</span>
+        <span>访问量：<em id="hits">1520</em></span>
+      </div>
+      <div class="h20"></div>
+      <div class="content">
+        <p style="white-space:normal;">
+          <span style="font-size:14px;font-family:arial, 宋体, sans-serif;color:#333333;line-height:24px;background-color:#ffffff;text-indent:28px;" th:text="${survey.content}"><!--KAB，英文全称Know About Business，意思是“了解企业”，是国际劳动组织--></span>
+         <!-- <span style="font-size:14px;font-family:arial, 宋体, sans-serif;color:#333333;line-height:24px;background-color:#ffffff;text-indent:28px;"> 为培养大学生的创业意识和创业能力而专门开发的教育项目。</span>
+          <span style="font-size:14px;font-family:arial, 宋体, sans-serif;color:#333333;line-height:24px;background-color:#ffffff;text-indent:28px;">该项目通过教授有关企业和创业的基本知识和技能，帮助学生对创业树立全面认识，普及创业意识和创业知识，培养有创新精神和创业能力的青年人才。该项目一般以选修课形式在大学开展，学生通过选修该课程可以获得相应的学分。KAB课程一个很大的特点就是先让学员去体验，体验之后再回来讨论，而不是先学习若干理论知识。</span>-->
+        </p>
+       <!-- <p style="white-space:normal;">
+          <span style="font-size:14px;font-family:arial, 宋体, sans-serif;color:#333333;line-height:24px;background-color:#ffffff;text-indent:28px;"></span>
+        </p>
+        <div class="para" style="font-size:14px;margin-bottom:5px;font-family:arial, 宋体, sans-serif;white-space:normal;color:#333333;line-height:24px;background-color:#ffffff;text-indent:2em;">
+          目前，KAB项目针对“KAB项目讲师”、“KAB项目培训师”以及“KAB项目高级培训师”实施分层次的统一化培训标准。
+        </div>
+        <div class="para" style="font-size:14px;margin-bottom:5px;font-family:arial, 宋体, sans-serif;white-space:normal;color:#333333;line-height:24px;background-color:#ffffff;text-indent:2em;">
+          针对KAB<a style="text-decoration:none;color:#136ec2;" href="http://baike.baidu.com/view/61891.htm" target="_blank">中国</a>项目高校和KAB中国项目培训机构，KAB项目测评中心建立完善了两套不同的质量控制体系，通过10个质量控制工具来规范项目的监督和评估工作。其中，“高校授课质量控制工具包”设计了开课前使用的“教学计划表”、“学生情况调查表”、“学生创业知识测试”，课程进行中使用的“课后意见反馈表”和课程结束后使用的“学生培训绩效评价表”与“高效创业教育调查表”。“师资培训质量控制工具包”包括培训期间使用的“每日意见反馈表”和“培训学员模拟教学互评表”，以及培训结束时使用的“培训师授课质量评价表”和“培训班培训绩效评价表”。评估报告从“授课结构”、“授课内容”、“授课方法及手段”、“授课技巧”四个维度分别设计相关具体问题，了解学员对培训师的满意程度，每个问题有“非常好”（5分）、“好”（4分）、“一般”（3分）、“差”（2分）、“非常差”（1分）等5个等级变量。
+        </div>-->
+        <div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h20"></div>
+  <script type="text/javascript">
+    $(function(){
+      $(document).keydown(function(e){
+        if(e.keyCode == 13){
+          $(".subBtn").click();
+        }
+      });
+      $(".subBtn").click (function(){
+        var  content = 	$(this).prev('textarea').val();
+        $('.msg').css('color','green');
+        if(content == "请输入评论内容..." ||  /^\s+$/.test(content)){
+          $('.msg').css('color','red').text("请输入评论内容");
+          $(this).prev('textarea').val("请输入评论内容...");
+          return false;
+        }else if($("#code").val() == "" || !/^\w{4}$/.test($("#code").val())){
+          $('.msg').css('color','red').text("请输入4位验证码");
+          return false;
+        }else{
+          $.post("show.php?action=addComment",{content:content,id:"9",code:$("#code").val()} ,function(data){
+            var data = $.parseJSON(data);
+            if(data.status ==1){
+              $('.msg').css('color','green').text("成功发布评论");
+              setTimeout(function(){
+                $('.msg').text("");
+              },2000);
+              $("#code").val('');
+              var html = "<li>";
+              html +=content +'<time class="fr">发表于： '+ data.time+'</time>';
+              html += "</li>";
+              $(".commentLists").find("li").eq(0).before($(html));
+              $('.subBtn').prev('textarea').val("请输入评论内容...");
+              return;
+            }else if(data.status == 2){
+              $('.msg').css('color','red').text("发布评论失败");
+              return;
+            }else if(data.status == 3 ){
+              $('.msg').css('color','red').text(data.msg);
+              return;
+            }
+          });
+        }
+
+      });
+    });
+
+  </script>
+  <div id="footer">
+    <ul>
+      <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+      <li>|</li>
+      <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+    </ul>
+  </div>
+
+
+</div></body></html>

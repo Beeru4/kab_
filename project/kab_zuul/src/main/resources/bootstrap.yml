@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:5000 #配置中心地址
+      profile: dev
+      label: master
+      name: kab-config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh #refresh接入点显式暴露出来,导致可以刷新

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beerus.mapper.MemberUserMapper">
+
+    <sql id="memberSQL">
+        <trim prefix="where" prefixOverrides="or">
+            <if test="member != null and member.name != null">
+                name LIKE CONCAT('%',#{member.name},'%')
+                or userName LIKE CONCAT('%',#{member.userName},'%')
+            </if>
+        </trim>
+    </sql>
+    
+    <select id="listMember" resultType="MemberUser">
+        select id,userName,name,phone,gender,is_lock isLock
+        from member_user_tab
+        <include refid="memberSQL"></include>
+        ORDER BY id DESC
+        LIMIT #{currPageNo},#{pageSize}
+    </select>
+
+    <select id="count_Rows" resultType="Integer">
+         select COUNT(1)
+         from member_user_tab
+        <include refid="memberSQL"></include>
+    </select>
+
+    <update id="modifyStatus">
+        UPDATE member_user_tab
+                SET is_lock = #{status}
+        where id = #{id}
+    </update>
+</mapper>

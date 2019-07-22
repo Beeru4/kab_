@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>KAB大学生创业教育网</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="创业信息资讯 网上开班 大学生创业 KAB大学生">
+    <meta charset="UTF-8">
+    <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet">
+    <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+    <script type="text/javascript">
+        $(function () {//导航
+            var navdata = "" || "首页";
+            $(".topMain").find("li").each(function () {
+                if (navdata == $(this).text()) {
+                    $(".topMain").find("li a").removeClass("on");
+                    $(this).find('a').addClass("on");
+
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="header">
+    <div id="topInfo">
+        <span class="white">欢迎来到KAB创业教育网</span>
+        <div class="memberBox fr">
+            <ul th:if="${null == member}">
+                <li><a href="http://127.0.0.1:7070/member/login">[登录]</a></li>
+                <li><a href="http://127.0.0.1:7070/member/r7070egister">[免费注册]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+            <ul th:if="${null != member}">
+                <li class="fgreen">
+                    您好,<span>&nbsp;<b th:text="${member.name == null ?'':member.name}"></b>&nbsp;老师</span>
+                </li>
+                <li><a href="/member/loginout">[注销]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="navs">
+        <div class="navmains">
+            <div class="logo fl"><a href="http://127.0.0.1:7070/public/index"><img src="http://127.0.0.1:7500/image/logo.gif"
+                                                                            alt="logo"></a></div>
+            <div class="topMain">
+                <ul>
+                    <li><a href="http://127.0.0.1:7070/public/index" class="on" style="background-color: #5BAF2F">首页</a></li>
+                    <li><a href="http://127.0.0.1:7070/survey/viewSurvey">KAB概况</a></li>
+                    <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+                    <li><a href="http://127.0.0.1:7070/consultation/consultation">创业资讯</a></li>
+                    <li><a href="http://127.0.0.1:7070/news/news">新闻展示</a></li>
+                    <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear h20"></div>
+
+    <div id="main">
+        <div class="banner">
+            <h3>版权声明</h3>
+            <img src="http://127.0.0.1:7500/image/banner.gif" width="1000px" height="200px" alt="banner">
+        </div>
+        <div class="locaiton green"><a href="http://kab.project.bdqn.cn/">首页</a>&gt;&gt;单页管理&gt;&gt;版权声明</div>
+        <div class="h20"></div>
+        <div class="leftMenu fl">
+            <div class="menuTop"> 单页管理</div>
+            <ul>
+                <li><a href="http://127.0.0.1:7000/about">关于我们</a></li>
+                <li><a href="http://127.0.0.1:7000/copy" class="on" style="background-color: #3d474a">版权声明</a></li>
+                <li><a href="http://127.0.0.1:7000/recruit">人才招聘</a></li>
+                <li><a href="http://127.0.0.1:7000/contact">联系我们</a></li>
+            </ul>
+        </div>
+        <div class="rightContent fl">
+            <div style="text-align:center;">
+                <div style="text-align:left;">
+                    <span style="white-space:nowrap;line-height:1.5;">1、本网所有内容，凡注明"来源：北大青鸟××（频道）"的所有文字、图片和音视频资料，版权均属北大青鸟公司所有，任何媒体、网站或个人未经本网协议授权不得转载、链接、转贴或以其他方式复制发布/发表。已经本网协议授权的媒体、网站，在下载使用时必须注明"稿件来源：北大青鸟网"，违者本网将依法追究责任。 </span>
+                </div>
+                <div style="text-align:left;">
+		<span style="white-space:nowrap;"><br>
+</span>
+                </div>
+                <div style="text-align:left;">
+                    <br>
+                </div>
+                <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">凡本网注明"来源：XXX "的文/图等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。</span>
+	</div>
+</span>
+                <div style="text-align:left;">
+		<span style="white-space:nowrap;"><br>
+</span>
+                </div>
+                <div style="text-align:left;">
+                    <br>
+                </div>
+                <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">2、除注明"来源：北大青鸟××（频道）"的内容外，本网以下内容亦不可任意转载：</span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">a.本网所指向的非本网内容的相关链接内容； </span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">b.已作出不得转载或未经许可不得转载声明的内容； </span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">c.未由本网署名或本网引用、转载的他人作品等非本网版权内容； </span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">d.本网中特有的图形、标志、页面风格、编排方式、程序等； </span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">e.本网中必须具有特别授权或具有注册用户资格方可知晓的内容； </span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">f.其他法律不允许或本网认为不适合转载的内容。</span>
+	</div>
+</span>
+                <div style="text-align:left;">
+		<span style="white-space:nowrap;"><br>
+</span>
+                </div>
+                <div style="text-align:left;">
+                    <br>
+                </div>
+                <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">3、转载或引用本网内容必须是以新闻性或资料性公共免费信息为使用目的的合理、善意引用，不得对本网内容原意进行曲解、修改，同时必须保留本网注明的"稿件来源"，并自负版权等法律责任。</span>
+	</div>
+</span>
+                <div style="text-align:left;">
+		<span style="white-space:nowrap;"><br>
+</span>
+                </div>
+                <div style="text-align:left;">
+                    <br>
+                </div>
+                <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">4、转载或引用本网内容不得进行如下活动：</span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">a. 损害本网或他人利益；</span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">b. 任何违法行为； </span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">c. 任何可能破坏公秩良俗的行为； </span>
+	</div>
+</span> <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">d. 擅自同意他人继续转载、引用本网内容；</span>
+	</div>
+</span>
+                <div style="text-align:left;">
+		<span style="white-space:nowrap;"><br>
+</span>
+                </div>
+                <div style="text-align:left;">
+                    <br>
+                </div>
+                <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">5、转载或引用本网版权所有之内容须注明“转自（或引自）北大青鸟网”字样，并标明本网网址。</span>
+	</div>
+</span>
+                <div style="text-align:left;">
+		<span style="white-space:nowrap;"><br>
+</span>
+                </div>
+                <div style="text-align:left;">
+                    <br>
+                </div>
+                <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">6、转载或引用本网中的署名文章，请按规定向作者支付稿酬。</span>
+	</div>
+</span>
+                <div style="text-align:left;">
+		<span style="white-space:nowrap;"><br>
+</span>
+                </div>
+                <div style="text-align:left;">
+                    <br>
+                </div>
+                <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">7、对于不当转载或引用本网内容而引起的民事纷争、行政处理或其他损失，本网不承担责任。</span>
+	</div>
+</span>
+                <div style="text-align:left;">
+		<span style="white-space:nowrap;"><br>
+</span>
+                </div>
+                <div style="text-align:left;">
+                    <br>
+                </div>
+                <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">8、本网以“法定许可”方式使用作品的报酬，已委托中华版权代理总公司代为转付。请相关作者直接与中华版权代理总公司联系，联系电话为：010-*****。</span>
+	</div>
+</span>
+                <div style="text-align:left;">
+		<span style="white-space:nowrap;"><br>
+</span>
+                </div>
+                <div style="text-align:left;">
+                    <br>
+                </div>
+                <span style="white-space:nowrap;">
+	<div style="text-align:left;">
+		<span style="line-height:1.5;">9、对不遵守本声明或其他违法、恶意使用本网内容者，本网保留追究其法律责任的权利。</span>
+	</div>
+</span>
+                <div style="text-align:left;">
+                    <span style="line-height:1.5;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <ul>
+            <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+            <li>|</li>
+            <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+        </ul>
+    </div>
+
+
+</div>
+</body>
+</html>

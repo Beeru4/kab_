@@ -1,0 +1,54 @@
+server:
+  port: 7070
+spring:
+  mvc:
+    view:
+      suffix: .html
+      prefix: classpath:templates/
+  application:
+    name: kab-zuul
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8888/eureka
+zuul:
+  routes: #暴露请求接口
+    curriculum:
+      path: /curriculum/** #课程映射路径
+      serviceId: kab-curriculum-consumer #服务id
+      sensitiveHeaders: "*"
+    member:
+      path: /member/** #会员用户映射路径
+      serviceId: kab-member-consumer #服务id
+      sensitiveHeaders: "*"
+    news:
+      path: /news/** #新闻映射路径
+      serviceId: kab-news-consumer #服务id
+      sensitiveHeaders: "*"
+    comment:
+      path: /comment/** #评论映射路径
+      serviceId: kab-comment-consumer #服务id
+      sensitiveHeaders: "*"
+    survey:
+      path: /survey/** #概论映射路径
+      serviceId: kab-survey-consumer #服务id
+      sensitiveHeaders: "*"
+    consultation:
+      path: /consultation/** #资讯映射路径
+      serviceId: kab-consultation-consumer #服务id
+      sensitiveHeaders: "*"
+    course:
+      path: /course/** #公告映射路径
+      serviceId: kab-course-consumer #服务id
+      sensitiveHeaders: "*"
+    public:
+      path: /public/** #公共映射路径
+      serviceId: kab-public-consumer #服务ID
+      sensitiveHeaders: "*"
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  sensitive-headers: "*" # 解决通过网关调用其他模块，每次其他模块都产生新的sessionId的问题
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000

@@ -1,0 +1,313 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>KAB大学生创业教育网</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="创业信息资讯 网上开班 大学生创业 KAB大学生"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link type="text/css" href="http://127.0.0.1:7500/css/base.css" rel="stylesheet"/>
+    <link type="text/css" href="http://127.0.0.1:7500/css/style.css" rel="stylesheet"/>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:7500/js/common.js"></script>
+    <script type="text/javascript">
+        $(function () {//导航
+            var navdata = "index" || "首页";
+            $(".topMain").find("li").each(function () {
+                if (navdata == $(this).text()) {
+                    $(".topMain").find("li a").removeClass("on");
+                    $(this).find('a').addClass("on");
+
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="header">
+    <div id="topInfo">
+        <span class="white">欢迎来到KAB创业教育网</span>
+        <div class="memberBox fr">
+            <ul th:if="${null == session.member}">
+                <li><a href="http://127.0.0.1:7070/member/login">[登录]</a></li>
+                <li><a href="http://127.0.0.1:7070/member/register">[免费注册]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+            <ul th:if="${null != session.member}">
+                <li class="fgreen">
+                    您好,<span>&nbsp;<b
+                        th:text="${session.member.name == null ?'':session.member.name}"></b>&nbsp;老师</span>
+                </li>
+                <li><a href="/member/loginout">[注销]</a></li>
+                <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+</header>
+
+<div class="navs">
+    <div class="navmains">
+        <div class="logo fl"><a href="http://127.0.0.1:7070/public/index"><img
+                src="http://127.0.0.1:7500/image/logo.gif"
+                alt="logo"/></a>
+        </div>
+        <div class="topMain">
+            <ul>
+                <li><a href="http://127.0.0.1:7070/public/index" class="on" style="background-color: #5BAF2F">首页</a>
+                </li>
+                <li><a href="http://127.0.0.1:7070/survey/viewSurvey">KAB概况</a></li>
+                <li><a href="http://127.0.0.1:7070/course/course">KAB公告</a></li>
+                <li><a href="http://127.0.0.1:7070/consultation/consultation">创业资讯</a></li>
+                <li><a href="http://127.0.0.1:7070/news/news">新闻展示</a></li>
+                <li><a href="http://127.0.0.1:7070/curriculum/curriculum">KAB课程</a></li>
+                <li><a href="http://127.0.0.1:7070/member/personal">个人中心</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="clear h20"></div>
+
+<div id="main">
+    <div class="aside fl">
+        <!--登录框-->
+        <div class="loginBox">
+            <div class="boxTop">会员登录</div>
+            <div class="boxContent">
+                <form method="post" action="http://127.0.0.1:7070/member/memberLogin" th:if="${null == session.member}">
+                    <div class="item username">
+                        <input  type="text" name="username" />
+                    </div>
+                    <div class="item pwd"><input  type="password" name="pwd"  /></div>
+                    <div class="item code">
+                        <input type="submit"  value="登&nbsp;录" class="input-btn"/>
+                    </div>
+                     <div class="item code">
+                         <a href="http://127.0.0.1:7070/member/pwd" class="">找回密码</a>&nbsp;&nbsp;&nbsp;
+                         <a href="http://127.0.0.1:7070/member/register" class="yellow">用户注册</a>
+                     </div>
+                    <div class="msg"></div>
+                </form>
+                <ul th:if="${null != session.member}">
+                    <!-- <li th:text="${member.userName}==null?'a':'3'"></li>-->
+                    <li th:text="${'手机号码:'+session.member.phone}"></li>
+                    <li th:text="${session.member.name == null ?'真实姓名：暂未设置':'真实姓名：'+session.member.name}"></li>
+                    <li th:text="${session.member.userTypeId == null ?'会员级别：暂未设置':'会员级别：'+session.member.userTypeId}"></li>
+                    <li th:text="${session.member.email == null ?'邮箱：暂未设置':'邮箱：'+session.member.email}"></li>
+                </ul>
+            </div>
+
+
+        </div>
+        <!--创业资讯-->
+        <div class="newsbox listOnes">
+            <div class='listTop'><a href="http://127.0.0.1:7070/consultation/consultation" class="more">更多&gt;</a>
+                <h3 class="listTitle">创业资讯</h3></div>
+            <ul class="zixu">
+
+
+            </ul>
+        </div>
+        <!--kab课程-->
+        <div class="newsbox listOnes">
+            <div class='listTop'><a href="http://127.0.0.1:7070/curriculum/curriculum" class="more">更多&gt;</a>
+                <h3 class="listTitle">KAB课程</h3></div>
+            <ul class="kechen">
+
+
+            </ul>
+        </div>
+    </div>
+    <div class="section fl">
+        <!--焦点图和kab概况-->
+        <div id="topBox">
+            <div class="FocusPic fl">
+                <div class="content" id="main-slide">
+                    <div class="changeDiv">
+                        <a href="show.php?id=25" title="江苏：校园电商促大学生创业"><img
+                                src="http://127.0.0.1:7500/image/20140425062739_64456.jpg" alt="江苏：校园电商促大学生创业"
+                                width="335" height="280"/></a>
+
+                        <a href="show.php?id=24" title="“青年恒好”编织吧落户重庆"><img
+                                src="http://127.0.0.1:7500/image/20140425062516_93117.jpg" alt="“青年恒好”编织吧落户重庆"
+                                width="335" height="280"/></a>
+                    </div>
+                </div>
+            </div>
+            <div id="kabDesc" class="fl">
+                <div class='listTop-whiteBg'><h3 class="listTitle">KAB概况</h3></div>
+                <div class="about">
+
+                </div>
+                <a href="http://127.0.0.1:7070/survey/viewSurvey" class="detalBtn">详细&gt;&gt;</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <!--KAB公告-->
+        <div class="newsBox listOnes">
+            <div class='listTop'><a href="http://127.0.0.1:7070/course/course" class="more">更多&gt;</a>
+                <h3 class="listTitle green">KAB公告</h3></div>
+            <ul class="gongGao">
+
+
+            </ul>
+        </div>
+        <!--新闻展示-->
+        <div class="newsBox listOnes">
+            <div class='listTop'><a href="http://127.0.0.1:7070/news/news" class="more">更多&gt;</a>
+                <h3 class="listTitle green">新闻展示</h3></div>
+            <ul class="news">
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        new slide("#main-slide", "cur", 335, 280, 1);//焦点图
+    })
+</script>
+<div id="footer">
+    <ul>
+        <li><a href="http://127.0.0.1:7070/public/index">首页</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/about">关于我们</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/copy">版权声明</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/recruit">人才招聘</a></li>
+        <li>|</li>
+        <li><a href="http://127.0.0.1:7070/public/contact">联系我们</a></li>
+    </ul>
+</div>
+</body>
+<script>
+    var login;
+
+    $(function () {
+
+        var contentPath = "http://127.0.0.1:7070";
+
+        //加载资讯
+        function loadZixu() {
+            $.getJSON(contentPath + "/consultation/queryConsuByNine", function (data) {
+                if (data.code == 1000) {
+                    var stg = "";
+                    $.each(data.data, function (i, d) {
+                        var title = '';
+                        if(d.title.length <=15){
+                            title = d.title;
+                        }else{
+                            title =d.title.substring(0,15)+"...";
+                        }
+                        stg += '<li><span>·</span><a href="' + contentPath + '/consultation/viewConsuByNine/' + d.id + '" title="' + title + '">' + title+ '...</a><time class="fr">' + d.releaseDate.split('-')[1] + '.' + d.releaseDate.split('-')[2].substring(0, 2) + '</time></li>';
+                    })
+                    $(".zixu").html(stg);
+                }
+            });
+
+        }
+
+        //加载公告
+        function loadGongGao() {
+            $.getJSON(contentPath + "/course/listCourseNoticeNine", function (data) {
+                    if (data.code == 1000) {
+                        var stg = "";
+                        $.each(data.data, function (i, d) {
+                            var title = '';
+                            if(d.title.length <=30){
+                                title = d.title;
+                            }else{
+                                title =d.title.substring(0,30)+"...";
+                            }
+                            stg += ' <li><span>·</span><a href="' + contentPath + '/course/viewCourse/' + d.id + '"title="' + title + '">' + title + '</a><time class="fr">' + d.releaseDate.substring(0,d.releaseDate.indexOf('T'))+'</time></li></li>';
+                        })
+                        $(".gongGao").html(stg);
+                    }
+                }
+            );
+
+        }
+
+        //加载课程
+        function loadKeChen() {
+            $.getJSON(contentPath + "/curriculum/listCurriculumByNine", function (data) {
+                if (data.code == 1000) {
+                    var stg = "";
+                    $.each(data.data, function (i, d) {
+                        var title = '';
+                        if(d.title.length <=15){
+                            title = d.title;
+                        }else{
+                            title =d.title.substring(0,15)+"...";
+                        }
+                        stg += '<li><span>·</span><a href="' + contentPath + '/curriculum/viewCurriculum/' + d.id + '"title="' + title + '">' + title + '...</a><time class="fr">' + d.releaseDate.split('-')[1] + '.' + d.releaseDate.split('-')[2].substring(0, 2) + '</time></li>';
+                    })
+                    $(".kechen").html(stg);
+                }
+            });
+
+        }
+
+        //加载新闻
+        function loadNews() {
+            $.getJSON(contentPath + "/news/listNewsByNine", function (data) {
+                if (data.code == 1000) {
+                    var stg = "";
+                    $.each(data.data, function (i, d) {
+                        var title = '';
+                        if(d.title.length <=30){
+                            title = d.title;
+                        }else{
+                            title =d.title.substring(0,30)+"...";
+                        }
+                        stg += ' <li><span>·</span><a href="' + contentPath + '/news/viewNews/' + d.id + '"title="' + title + '">' + title + '</a><time class="fr">' + d.releaseDate.substring(0,d.releaseDate.indexOf('T'))+ '</time></li>';
+                    })
+                    $(".news").html(stg);
+                }
+            });
+
+        }
+
+        //加载概况
+        function loadGaiKuang() {
+            $.getJSON(contentPath + "/survey/survey", function (data) {
+                if (data.code == 1000) {
+                    $(".about").text(data.data.content);
+                }
+            });
+
+        }
+
+
+        loadKeChen();
+        loadZixu();
+        loadGongGao();
+        loadGaiKuang();
+        loadNews();
+        //登入
+        $("form").submit(function () {
+            var msg = $(".msg");
+            var nameReg = /^[a-zA-Z0-9_-]{4,16}$/;
+            var pwdReg = /^(\w){6,20}$/;
+            var userName = $('[name="username"]');
+            var password = $('[name="pwd"]');
+            if (!nameReg.test(userName.val().trim())) {
+                msg.text("·请输入用户名(4到16位(字母，数字，下划线，减号))").css('color', 'red');
+                userName.focus();
+                return false;
+            }
+            if (!pwdReg.test(password.val().trim())) {
+                msg.text("·请输入密码(6-20个字母、数字、下划线)").css('color', 'red');
+                password.focus();
+                return false;
+            }
+        });
+
+    })
+</script>
+</html>
