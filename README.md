@@ -43,3 +43,6 @@
 - project 所有服务
 - sql sql语句
 - properties 项目配置文件
+
+#### 流程图
+![net](./pig/work.jpg) 
