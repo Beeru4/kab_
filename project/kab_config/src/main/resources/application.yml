@@ -9,7 +9,7 @@ spring:
         git:
           uri: https://github.com/Beeru4/kab_.git
           username: Beeru4
-          password: wotoubeerus6
+          password: 001
           search-paths: properties
 eureka:
   client:
